@@ -56,6 +56,16 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_full_name"></a> [full\_name](#output\_full\_name) | A string of the form 'orgname/reponame'. |
+| <a name="output_git_clone_url"></a> [git\_clone\_url](#output\_git\_clone\_url) | URL that can be provided to git clone to clone the repository anonymously via the git protocol. |
+| <a name="output_html_url"></a> [html\_url](#output\_html\_url) | URL to the repository on the web. |
+| <a name="output_http_clone_url"></a> [http\_clone\_url](#output\_http\_clone\_url) | URL that can be provided to git clone to clone the repository via HTTPS. |
+| <a name="output_node_id"></a> [node\_id](#output\_node\_id) | GraphQL global node id for use with v4 API |
+| <a name="output_pages"></a> [pages](#output\_pages) | The block consisting of the repository's GitHub Pages configuration with the following additional attributes: custom\_404 - Whether the rendered GitHub Pages site has a custom 404 page. html\_url - The absolute URL (including scheme) of the rendered GitHub Pages site e.g. https://username.github.io. status - The GitHub Pages site's build status e.g. building or built. |
+| <a name="output_primary_language"></a> [primary\_language](#output\_primary\_language) | The primary language used in the repository. |
+| <a name="output_repo_id"></a> [repo\_id](#output\_repo\_id) | GitHub ID for the repository |
+| <a name="output_ssh_clone_url"></a> [ssh\_clone\_url](#output\_ssh\_clone\_url) | URL that can be provided to git clone to clone the repository via SSH. |
+| <a name="output_svn_url"></a> [svn\_url](#output\_svn\_url) | URL that can be provided to svn checkout to check out the repository via GitHub's Subversion protocol emulation. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
