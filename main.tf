@@ -24,13 +24,13 @@ resource "github_repository" "main" {
   archived                    = var.archived
   archive_on_destroy          = var.archive_on_destroy
   dynamic "pages" {
-    for_each = length([var.pages]) > 1 ? [true] : []
+    for_each = var.pages != null ? [true] : []
     content {
       build_type = lookup(var.pages, "build_type", null)
       cname      = lookup(var.pages, "cname", null)
       source {
-        branch = lookup(var.pages, "branch", null)
-        path   = try(var.pages, "path", "/")
+        branch = lookup(var.pages.source, "branch", null)
+        path   = lookup(var.pages.source, "path", "/")
       }
     }
   }
@@ -45,7 +45,7 @@ resource "github_branch" "others" {
 }
 
 resource "github_branch" "default" {
-  count         = var.create_default_branch ? 1 : 0
+  count         = var.default_branch != null ? 1 : 0
   repository    = github_repository.main.name
   branch        = var.default_branch
   source_branch = var.default_source_branch
@@ -53,12 +53,13 @@ resource "github_branch" "default" {
 }
 
 resource "github_branch_default" "default" {
-  count      = var.create_default_branch ? 1 : 0
+  count         = var.default_branch != null ? 1 : 0
   repository = github_repository.main.name
   branch     = github_branch.default[0].branch
 }
 
 resource "github_repository_collaborators" "main" {
+  count = var.repo_user_collaborators != {} || var.repo_team_collaborators != {} ? 1 : 0
   repository = github_repository.main.name
   dynamic "user" {
     for_each = var.repo_user_collaborators
@@ -78,6 +79,7 @@ resource "github_repository_collaborators" "main" {
 }
 
 resource "github_issue_labels" "main" {
+  count = length(var.issue_labels) > 0 ? 1 : 0
   repository = github_repository.main.name
   dynamic "label" {
     for_each = var.issue_labels

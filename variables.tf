@@ -77,25 +77,25 @@ variable "allow_auto_merge" {
 
 variable "squash_merge_commit_title" {
   description = "(Optional) Can be PR_TITLE or COMMIT_OR_PR_TITLE for a default squash merge commit title. Applicable only if allow_squash_merge is true."
-  type        = bool
+  type        = string
   default     = null
 }
 
 variable "squash_merge_commit_message" {
   description = "(Optional) Can be PR_BODY, COMMIT_MESSAGES, or BLANK for a default squash merge commit message. Applicable only if allow_squash_merge is true."
-  type        = bool
+  type        = string
   default     = null
 }
 
 variable "merge_commit_title" {
   description = "Can be PR_TITLE or MERGE_MESSAGE for a default merge commit title. Applicable only if allow_merge_commit is true."
-  type        = bool
+  type        = string
   default     = null
 }
 
 variable "merge_commit_message" {
   description = "Can be PR_BODY, PR_TITLE, or BLANK for a default merge commit message. Applicable only if allow_merge_commit is true."
-  type        = bool
+  type        = string
   default     = null
 }
 
@@ -144,7 +144,7 @@ variable "archive_on_destroy" {
 
 variable "pages" {
   description = "(Optional) The repository's GitHub Pages configuration."
-  type        = map(any)
+  type        = any
   default     = {}
 }
 
