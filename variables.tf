@@ -141,3 +141,69 @@ variable "archive_on_destroy" {
   type        = bool
   default     = null
 }
+
+variable "pages" {
+  description = "(Optional) The repository's GitHub Pages configuration."
+  type        = map(any)
+  default     = {}
+}
+
+variable "branches" {
+  description = "Map of additional branches to be created in the repository"
+  type        = map(string)
+  default     = {}
+}
+
+variable "source_branch" {
+  description = "(Optional) The branch name to start from. Defaults to main."
+  type        = string
+  default     = "main"
+}
+
+variable "source_sha" {
+  description = "(Optional) The commit hash to start from. Defaults to the tip of source_branch. If provided, source_branch is ignored."
+  type        = string
+  default     = null
+}
+
+variable "create_default_branch" {
+  description = "Whether to create a default branch"
+  type        = bool
+  default     = false
+}
+
+variable "default_source_branch" {
+  description = "(Optional) The branch name to start from for the default branch. Defaults to main."
+  type        = string
+  default     = "main"
+}
+
+variable "default_source_sha" {
+  description = "(Optional) The commit hash to start from for the default branch. Defaults to the tip of source_branch. If provided, source_branch is ignored."
+  type        = string
+  default     = null
+}
+
+variable "default_branch" {
+  description = "The repository branch to create."
+  type        = string
+  default     = null
+}
+
+variable "issue_labels" {
+  description = "Issue labels to be created in your repository"
+  type        = list(map(string))
+  default     = []
+}
+
+variable "repo_user_collaborators" {
+  description = "value"
+  type        = any
+  default     = {}
+}
+
+variable "repo_team_collaborators" {
+  description = "value"
+  type        = any
+  default     = {}
+}

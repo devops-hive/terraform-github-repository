@@ -23,11 +23,68 @@ resource "github_repository" "main" {
   license_template            = var.license_template
   archived                    = var.archived
   archive_on_destroy          = var.archive_on_destroy
-  pages {
+  dynamic "pages" {
+    for_each = length([var.pages]) > 1 ? [true] : []
+    content {
+      build_type = lookup(var.pages, "build_type", null)
+      cname      = lookup(var.pages, "cname", null)
+      source {
+        branch = lookup(var.pages, "branch", null)
+        path   = try(var.pages, "path", "/")
+      }
+    }
+  }
+}
 
+resource "github_branch" "others" {
+  for_each      = var.branches
+  repository    = github_repository.main.name
+  branch        = lookup(var.branches, "branch")
+  source_branch = lookup(var.branches, "source_branch", "main")
+  source_sha    = lookup(var.branches, "source_branch", null)
+}
+
+resource "github_branch" "default" {
+  count         = var.create_default_branch ? 1 : 0
+  repository    = github_repository.main.name
+  branch        = var.default_branch
+  source_branch = var.default_source_branch
+  source_sha    = var.default_source_sha
+}
+
+resource "github_branch_default" "default" {
+  count      = var.create_default_branch ? 1 : 0
+  repository = github_repository.main.name
+  branch     = github_branch.default[0].branch
+}
+
+resource "github_repository_collaborators" "main" {
+  repository = github_repository.main.name
+  dynamic "user" {
+    for_each = var.repo_user_collaborators
+    content {
+      permission = lookup(var.repo_user_collaborators, "permissions", null)
+      username   = lookup(var.repo_user_collaborators, "username")
+    }
   }
 
+  dynamic "team" {
+    for_each = var.repo_team_collaborators
+    content {
+      permission = lookup(var.repo_team_collaborators, "permissions", null)
+      team_id    = lookup(var.repo_team_collaborators, "team_id")
+    }
+  }
+}
 
-
-
+resource "github_issue_labels" "main" {
+  repository = github_repository.main.name
+  dynamic "label" {
+    for_each = var.issue_labels
+    content {
+      name        = lookup(var.issue_labels, "name")
+      color       = lookup(var.issue_labels, "color")
+      description = lookup(var.issue_labels, "description", null)
+    }
+  }
 }
