@@ -1,3 +1,20 @@
+## This team is created to show how to setup github team repository. 
+resource "github_team" "example_team" {
+  name        = "example-team"
+  description = "This is an example team"
+  privacy     = "closed"
+}
+
+resource "github_team_members" "example_team_members" {
+  team_id  = github_team.example_team.id
+
+  members {
+    username = "ndegwajm"
+    role     = "member"
+  }
+}
+
+## Complete repository example
 module "complete-repository" {
   source                      = "./../../"
   name                        = "complete-repository-example"
@@ -24,6 +41,7 @@ module "complete-repository" {
   license_template            = "mit"
   archived                    = false
   archive_on_destroy          = false
+  default_branch              = "develop"
 
   pages = {
     build_type = "legacy"
@@ -32,4 +50,44 @@ module "complete-repository" {
       path   = "/"
     }
   }
+
+  branches = {
+    dev = {
+      branch        = "dev"
+      source_branch = "main"
+    }
+
+    test = {
+      branch        = "test"
+      source_branch = "main"
+    }
+  }
+
+  repo_user_collaborators = [ 
+    {
+        username = "ndegwajohn"
+        permission = "admin"
+    }
+   ]
+
+   repo_team_collaborators = [ 
+    {
+        team_id = github_team.example_team.slug
+        permission = "push"
+    }
+    ]
+
+  issue_labels = [
+    {
+      description = "example issue label 1"
+      name        = "Urgent"
+      color       = "FF0000"
+    },
+    {
+      description = "example issue label 2"
+      name        = "Critical"
+      color       = "FF0000"
+    }
+  ]
+  depends_on = [ github_team.example_team ]
 }
