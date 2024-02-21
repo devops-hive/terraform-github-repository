@@ -1,5 +1,24 @@
-# terraform-github-repository
-Terraform GitHub Repository module.
+### Terraform GitHub Repository
+
+This module creates a GitHub repository and the associated resources using terraform.
+The module aims to provide a simplified way of creating github repository resources within a very short time while covering all the necessary configurations.
+
+[GitHub Documentation](https://docs.github.com/en/repositories)
+
+[Terraform Documentation](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository)
+
+## Scope
+This module currently creates resources that are under the GitHub's free plan. In future releases, the module will cover features offered in Teams and Enterprise plans.
+
+## Basic example of how to create a single repository using this module
+```
+```
+
+## Basic example of how to create multiple repositories using this module
+```
+```
+
+Feel free to customize the configuration based on your needs.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -69,3 +88,5 @@ No modules.
 | <a name="output_ssh_clone_url"></a> [ssh\_clone\_url](#output\_ssh\_clone\_url) | URL that can be provided to git clone to clone the repository via SSH. |
 | <a name="output_svn_url"></a> [svn\_url](#output\_svn\_url) | URL that can be provided to svn checkout to check out the repository via GitHub's Subversion protocol emulation. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+Copyright (c) 2024 Devops-Hive
