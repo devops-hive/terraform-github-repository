@@ -36,12 +36,12 @@ resource "github_repository" "main" {
   }
 }
 
-resource "github_branch" "others" {
+resource "github_branch" "repo_branches" {
   for_each      = var.branches
   repository    = github_repository.main.name
-  branch        = lookup(var.branches, "branch")
-  source_branch = lookup(var.branches, "source_branch", "main")
-  source_sha    = lookup(var.branches, "source_branch", null)
+  branch        = lookup(each.value, "branch")
+  source_branch = lookup(each.value, "source_branch", "main")
+  source_sha    = lookup(each.value, "source_sha", null)
 }
 
 resource "github_branch" "default" {
@@ -59,23 +59,24 @@ resource "github_branch_default" "default" {
 }
 
 resource "github_repository_collaborators" "main" {
-  count = var.repo_user_collaborators != {} || var.repo_team_collaborators != {} ? 1 : 0
+  count = length(var.repo_user_collaborators) > 0 || length(var.repo_team_collaborators) > 0 ? 1 : 0
   repository = github_repository.main.name
   dynamic "user" {
     for_each = var.repo_user_collaborators
     content {
-      permission = lookup(var.repo_user_collaborators, "permissions", null)
-      username   = lookup(var.repo_user_collaborators, "username")
+      permission = lookup(user.value, "permission", null)
+      username   = lookup(user.value, "username")
     }
   }
 
   dynamic "team" {
     for_each = var.repo_team_collaborators
     content {
-      permission = lookup(var.repo_team_collaborators, "permissions", null)
-      team_id    = lookup(var.repo_team_collaborators, "team_id")
+      permission = lookup(team.value, "permission", null)
+      team_id    = lookup(team.value, "team_id")
     }
   }
+  depends_on = [ github_repository.main ]
 }
 
 resource "github_issue_labels" "main" {
@@ -84,9 +85,10 @@ resource "github_issue_labels" "main" {
   dynamic "label" {
     for_each = var.issue_labels
     content {
-      name        = lookup(var.issue_labels, "name")
-      color       = lookup(var.issue_labels, "color")
-      description = lookup(var.issue_labels, "description", null)
+      name        = lookup(label.value, "name")
+      color       = lookup(label.value, "color")
+      description = lookup(label.value, "description", null)
     }
   }
+  depends_on = [ github_repository.main ]
 }

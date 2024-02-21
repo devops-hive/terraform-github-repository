@@ -150,7 +150,7 @@ variable "pages" {
 
 variable "branches" {
   description = "Map of additional branches to be created in the repository"
-  type        = map(string)
+  type        = map(map(string))
   default     = {}
 }
 
@@ -198,12 +198,12 @@ variable "issue_labels" {
 
 variable "repo_user_collaborators" {
   description = "value"
-  type        = any
-  default     = {}
+  type        = list(map(string))
+  default     = []
 }
 
 variable "repo_team_collaborators" {
   description = "value"
-  type        = any
-  default     = {}
+  type        = list(map(string))
+  default     = []
 }
