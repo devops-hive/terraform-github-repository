@@ -12,10 +12,10 @@ resource "github_repository" "main" {
   allow_squash_merge                      = var.allow_squash_merge
   allow_rebase_merge                      = var.allow_rebase_merge
   allow_auto_merge                        = var.allow_auto_merge
-  squash_merge_commit_title               = var.allow_squash_merge == true ? var.squash_merge_commit_title : null
-  squash_merge_commit_message             = var.allow_squash_merge == true ? var.squash_merge_commit_message : null
-  merge_commit_title                      = var.allow_merge_commit == true ? var.merge_commit_title : null
-  merge_commit_message                    = var.allow_merge_commit == true ? var.merge_commit_message : null
+  squash_merge_commit_title               = var.allow_squash_merge ? var.squash_merge_commit_title : null
+  squash_merge_commit_message             = var.allow_squash_merge ? var.squash_merge_commit_message : null
+  merge_commit_title                      = var.allow_merge_commit ? var.merge_commit_title : null
+  merge_commit_message                    = var.allow_merge_commit ? var.merge_commit_message : null
   delete_branch_on_merge                  = var.delete_branch_on_merge
   web_commit_signoff_required             = var.web_commit_signoff_required
   auto_init                               = var.auto_init
