@@ -1,5 +1,5 @@
 ### Basic example
-This Terraform example demonstrates how to setup a basic repository using the devops-hive Terraform module. 
+This Terraform example demonstrates how to setup a basic repository using the devops-hive Terraform module.
 
 ## Prerequisites
 Before using this Terraform configuration, ensure you have the following prerequisites:

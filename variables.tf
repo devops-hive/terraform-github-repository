@@ -150,20 +150,20 @@ variable "pages" {
 
 variable "vulnerability_alerts" {
   description = "(Optional) - Set to true to enable security alerts for vulnerable dependencies. Enabling requires alerts to be enabled on the owner level. (Note for importing: GitHub enables the alerts on public repos but disables them on private repos by default.) See GitHub Documentation for details. Note that vulnerability alerts have not been successfully tested on any GitHub Enterprise instance and may be unavailable in those settings."
-  type = bool
-  default = true  
+  type        = bool
+  default     = true
 }
 
 variable "ignore_vulnerability_alerts_during_read" {
   description = "(Optional) - Set to true to not call the vulnerability alerts endpoint so the resource can also be used without admin permissions during read."
-  type = bool
-  default = true
+  type        = bool
+  default     = true
 }
 
 variable "allow_update_branch" {
   description = "(Optional) - Set to true to always suggest updating pull request branches."
-  type = bool
-  default = true
+  type        = bool
+  default     = true
 }
 
 variable "branches" {
