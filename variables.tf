@@ -99,7 +99,6 @@ variable "merge_commit_message" {
   default     = null
 }
 
-
 variable "delete_branch_on_merge" {
   description = "(Optional) Automatically delete head branch after a pull request is merged. Defaults to false."
   type        = bool
