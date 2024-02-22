@@ -1,0 +1,40 @@
+name-template: "v$RESOLVED_VERSION"
+tag-template: "v$RESOLVED_VERSION"
+version-template: "$MAJOR.$MINOR.$PATCH"
+categories:
+  - title: "🚀 Releases"
+    labels:
+      - "major"
+  - title: "🚀 Features"
+    labels:
+      - "minor"
+  - title: "🐛 Bug Fixes"
+    labels:
+      - "patch"
+  - title: "🧰 Maintenance"
+    label: "chore"
+change-template: |
+  <details>
+    <summary>$TITLE @$AUTHOR (#$NUMBER)</summary>
+
+    $BODY
+  </details>
+change-title-escapes: '\<*_&'
+version-resolver:
+  major:
+    labels:
+      - "major"
+  minor:
+    labels:
+      - "minor"
+  patch:
+    labels:
+      - "patch"
+  chore:
+    labels:
+      - "chore"
+  default: patch
+template: |
+  ## Changes in this Release
+
+  $CHANGES
