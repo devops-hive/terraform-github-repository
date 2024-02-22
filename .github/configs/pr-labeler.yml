@@ -1,0 +1,4 @@
+major: ['release*/*']
+minor: ['feat*/*']
+patch: ['fix*/*','hotfix*/*', bugfix*/*]
+chore: [chore*/*]
