@@ -1,4 +1,4 @@
-# Change Log
+# CHANGELOG
 
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -9,7 +9,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Added
 - Terraform resources for the first module release.
-- Module examples; basic and complete
+- Module examples; basic and complete.
 - Necessary GitHub workflows to the repository; checkov, pr labeler and release drafter.
 - Module documentation for user guidance.
 
