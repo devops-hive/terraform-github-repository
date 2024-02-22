@@ -23,6 +23,9 @@ resource "github_repository" "main" {
   license_template            = var.license_template
   archived                    = var.archived
   archive_on_destroy          = var.archive_on_destroy
+  vulnerability_alerts = var.vulnerability_alerts
+  ignore_vulnerability_alerts_during_read = var.ignore_vulnerability_alerts_during_read
+  allow_update_branch = var.allow_update_branch
   dynamic "pages" {
     for_each = var.pages != null ? [1] : []
     content {
