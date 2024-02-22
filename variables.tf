@@ -54,19 +54,19 @@ variable "is_template" {
 variable "allow_merge_commit" {
   description = "(Optional) Set to false to disable merge commits on the repository."
   type        = bool
-  default     = null
+  default     = true
 }
 
 variable "allow_squash_merge" {
   description = "(Optional) Set to false to disable squash merges on the repository."
   type        = bool
-  default     = null
+  default     = true
 }
 
 variable "allow_rebase_merge" {
   description = "(Optional) Set to false to disable rebase merges on the repository."
   type        = bool
-  default     = null
+  default     = true
 }
 
 variable "allow_auto_merge" {
@@ -145,31 +145,13 @@ variable "archive_on_destroy" {
 variable "pages" {
   description = "(Optional) The repository's GitHub Pages configuration."
   type        = any
-  default     = {}
+  default     = null
 }
 
 variable "branches" {
   description = "Map of additional branches to be created in the repository"
   type        = map(map(string))
   default     = {}
-}
-
-variable "source_branch" {
-  description = "(Optional) The branch name to start from. Defaults to main."
-  type        = string
-  default     = "main"
-}
-
-variable "source_sha" {
-  description = "(Optional) The commit hash to start from. Defaults to the tip of source_branch. If provided, source_branch is ignored."
-  type        = string
-  default     = null
-}
-
-variable "create_default_branch" {
-  description = "Whether to create a default branch"
-  type        = bool
-  default     = false
 }
 
 variable "default_source_branch" {
