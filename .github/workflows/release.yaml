@@ -27,6 +27,6 @@ jobs:
         with:
            config-name: configs/release-drafter.yml
            disable-autolabeler: true
-           publish : ${{ !contains(fromJSON('["no-release", "chore"]'), steps.get-merged-pr-labels.outputs.labels) }}
+           publish : ${{ !contains(fromJSON('["no-release", "chore", "automation"]'), steps.get-merged-pr-labels.outputs.labels) }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
