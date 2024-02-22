@@ -1,21 +1,48 @@
-### Terraform GitHub Repository
+## Terraform GitHub Repository Module
 
-This module creates a GitHub repository and the associated resources using terraform.
-The module aims to provide a simplified way of creating github repository resources within a very short time while covering all the necessary configurations.
+The Terraform GitHub Repository module simplifies the process of creating GitHub repositories and associated resources using Terraform. This README provides instructions and examples for quickly setting up repositories with essential configurations.
+
 
 [GitHub Documentation](https://docs.github.com/en/repositories)
 
 [Terraform Documentation](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository)
 
 ## Scope
-This module currently creates resources that are under the GitHub's free plan. In future releases, the module will cover features offered in Teams and Enterprise plans.
+
+This module currently supports the creation of GitHub repositories under the free plan. Future releases will extend support to include features available in Teams and Enterprise plans. Please ensure that you have a valid GitHub account and necessary credentials before using this module.
+
 
 ## Basic example of how to create a single repository using this module
 ```
+module "basic_repo" {
+  source      = "devops-hive/repository/github"
+  name        = "basic-repository"
+  description = "Basic repository created using the devops-hive terraform module"
+  visibility  = "private" # Choose from "private," "public," defaults to public
+}
 ```
 
 ## Basic example of how to create multiple repositories using this module
 ```
+module "multiple_repos" {
+    source      = "devops-hive/repository/github"
+    for_each    = local.repositories
+    name        = each.key
+    description = lookup(each.value, "description", null)
+    visibility  = lookup(each.value, "visibility", "public")
+}
+
+locals {
+  repositories = {
+    example-repo-1 = {
+      description = "Example repository 1 created using Devops-Hive terraform module"
+      visibility  = "private"
+    }
+    example-repository-2 = {
+      description = "Example repository 2 created using Devops-Hive terraform module"
+    }
+  }
+}
 ```
 
 Feel free to customize the configuration based on your needs.
@@ -103,5 +130,10 @@ No modules.
 | <a name="output_ssh_clone_url"></a> [ssh\_clone\_url](#output\_ssh\_clone\_url) | URL that can be provided to git clone to clone the repository via SSH. |
 | <a name="output_svn_url"></a> [svn\_url](#output\_svn\_url) | URL that can be provided to svn checkout to check out the repository via GitHub's Subversion protocol emulation. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+## License
+
+This Terraform GitHub Repository module is licensed under the [Apache 2.0 License](./LICENSE).
+
 
 Copyright (c) 2024 Devops-Hive
