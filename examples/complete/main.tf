@@ -1,4 +1,4 @@
-## This team is created to show how to setup github team repository. 
+## This team is created to show how to setup github team repository.
 resource "github_team" "example_team" {
   name        = "example-team"
   description = "This is an example team"
@@ -6,7 +6,7 @@ resource "github_team" "example_team" {
 }
 
 resource "github_team_members" "example_team_members" {
-  team_id  = github_team.example_team.id
+  team_id = github_team.example_team.id
 
   members {
     username = "ndegwajm"
@@ -15,7 +15,7 @@ resource "github_team_members" "example_team_members" {
 }
 
 ## Complete repository example
-module "complete-repository" {
+module "complete_repository" {
   source                      = "./../../"
   name                        = "complete-repository-example"
   description                 = "This is an example repository created using devops-hive's terraform module. The repository showcases all the module configurations"
@@ -63,19 +63,19 @@ module "complete-repository" {
     }
   }
 
-  repo_user_collaborators = [ 
+  repo_user_collaborators = [
     {
-        username = "ndegwajohn"
-        permission = "admin"
+      username   = "ndegwajohn"
+      permission = "admin"
     }
-   ]
+  ]
 
-   repo_team_collaborators = [ 
+  repo_team_collaborators = [
     {
-        team_id = github_team.example_team.slug
-        permission = "push"
+      team_id    = github_team.example_team.slug
+      permission = "push"
     }
-    ]
+  ]
 
   issue_labels = [
     {
@@ -89,5 +89,5 @@ module "complete-repository" {
       color       = "FF0000"
     }
   ]
-  depends_on = [ github_team.example_team ]
+  depends_on = [github_team.example_team]
 }
