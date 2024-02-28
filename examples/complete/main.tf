@@ -66,14 +66,14 @@ module "complete_repository" {
   repo_user_collaborators = [
     {
       username   = "ndegwajohn"
-      permission = "admin"
+      permission = "admin" # Must be one of pull, triage, push, maintain, admin
     }
   ]
 
   repo_team_collaborators = [
     {
       team_id    = github_team.example_team.slug
-      permission = "push"
+      permission = "push" # Must be one of pull, triage, push, maintain, admin
     }
   ]
 

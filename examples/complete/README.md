@@ -7,11 +7,11 @@ Before using this Terraform configuration, ensure you have the following prerequ
 - GitHub Token: Obtain a GitHub token with sufficient permissions to create teams, repositories, and configure settings. Set the token and github user/ organization as an environment variables or directly in your Terraform configuration.
 
 ```
-export GITHUB_TOKEN="your-github-token"
+export GITHUB_TOKEN="<your-github-token>"
 ```
 
 ```
-export GITHUB_OWNER="your-github-username/github-organization-name"
+export GITHUB_OWNER="<your-github-username/github-organization-name>"
 ```
 
 - Terraform Installed: Install Terraform on your local machine. You can download it from the [official website](https://developer.hashicorp.com/terraform/install).

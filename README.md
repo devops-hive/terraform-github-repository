@@ -11,8 +11,23 @@ The Terraform GitHub Repository module simplifies the process of creating GitHub
 
 This module currently supports the creation of GitHub repositories under the free plan. Future releases will extend support to include features available in Teams and Enterprise plans. Please ensure that you have a valid GitHub account and necessary credentials before using this module.
 
+## Examples
+### Prerequisites
+Before using this module to create repositories, ensure you have the following prerequisites:
 
-## Basic example of how to create a single repository using this module
+- GitHub Token: Obtain a GitHub token with sufficient permissions to create teams, repositories, and configure settings. Set the token and github user/ organization as an environment variables or directly in your Terraform configuration.
+
+```
+export GITHUB_TOKEN="<your-github-token>"
+```
+
+```
+export GITHUB_OWNER="<your-github-username/github-organization-name>"
+```
+
+Please see [here](./examples/) examples of how to create repositories using this module
+
+### Basic example of how to create a single repository using this module
 ```
 module "basic_repo" {
   source      = "devops-hive/repository/github"
@@ -22,7 +37,7 @@ module "basic_repo" {
 }
 ```
 
-## Basic example of how to create multiple repositories using this module
+### Basic example of how to create multiple repositories using this module
 ```
 module "multiple_repos" {
     source      = "devops-hive/repository/github"
@@ -44,6 +59,7 @@ locals {
   }
 }
 ```
+The examples above use the latest version of the [module](https://registry.terraform.io/modules/devops-hive/repository/github/latest).
 
 Feel free to customize the configuration based on your needs.
 
@@ -108,8 +124,8 @@ No modules.
 | <a name="input_merge_commit_title"></a> [merge\_commit\_title](#input\_merge\_commit\_title) | Can be PR\_TITLE or MERGE\_MESSAGE for a default merge commit title. Applicable only if allow\_merge\_commit is true. | `string` | `null` | no |
 | <a name="input_name"></a> [name](#input\_name) | (Required) The name of the repository. | `string` | n/a | yes |
 | <a name="input_pages"></a> [pages](#input\_pages) | (Optional) The repository's GitHub Pages configuration. | `any` | `null` | no |
-| <a name="input_repo_team_collaborators"></a> [repo\_team\_collaborators](#input\_repo\_team\_collaborators) | value | `list(map(string))` | `[]` | no |
-| <a name="input_repo_user_collaborators"></a> [repo\_user\_collaborators](#input\_repo\_user\_collaborators) | value | `list(map(string))` | `[]` | no |
+| <a name="input_repo_team_collaborators"></a> [repo\_team\_collaborators](#input\_repo\_team\_collaborators) | The GitHub team id(s) or the GitHub team slug to add to the repository as a collaborator(s). | `list(map(string))` | `[]` | no |
+| <a name="input_repo_user_collaborators"></a> [repo\_user\_collaborators](#input\_repo\_user\_collaborators) | The user(s) to add to the repository as a collaborator(s). | `list(map(string))` | `[]` | no |
 | <a name="input_squash_merge_commit_message"></a> [squash\_merge\_commit\_message](#input\_squash\_merge\_commit\_message) | (Optional) Can be PR\_BODY, COMMIT\_MESSAGES, or BLANK for a default squash merge commit message. Applicable only if allow\_squash\_merge is true. | `string` | `null` | no |
 | <a name="input_squash_merge_commit_title"></a> [squash\_merge\_commit\_title](#input\_squash\_merge\_commit\_title) | (Optional) Can be PR\_TITLE or COMMIT\_OR\_PR\_TITLE for a default squash merge commit title. Applicable only if allow\_squash\_merge is true. | `string` | `null` | no |
 | <a name="input_visibility"></a> [visibility](#input\_visibility) | (Optional) Can be public or private. If your organization is associated with an enterprise account using GitHub Enterprise Cloud or GitHub Enterprise Server 2.20+, visibility can also be internal. | `string` | `"public"` | no |
