@@ -1,5 +1,5 @@
 variable "name" {
-  description = " (Required) The name of the repository."
+  description = "(Required) The name of the repository."
   type        = string
 }
 
@@ -16,7 +16,7 @@ variable "homepage_url" {
 }
 
 variable "visibility" {
-  description = " (Optional) Can be public or private. If your organization is associated with an enterprise account using GitHub Enterprise Cloud or GitHub Enterprise Server 2.20+, visibility can also be internal."
+  description = "(Optional) Can be public or private. If your organization is associated with an enterprise account using GitHub Enterprise Cloud or GitHub Enterprise Server 2.20+, visibility can also be internal."
   type        = string
   default     = "public"
 }
@@ -106,7 +106,7 @@ variable "delete_branch_on_merge" {
 }
 
 variable "web_commit_signoff_required" {
-  description = " (Optional) Require contributors to sign off on web-based commits. See more here. Defaults to false."
+  description = "(Optional) Require contributors to sign off on web-based commits. See more here. Defaults to false."
   type        = bool
   default     = false
 }
@@ -196,13 +196,13 @@ variable "issue_labels" {
 }
 
 variable "repo_user_collaborators" {
-  description = "value"
+  description = "The user(s) to add to the repository as a collaborator(s)."
   type        = list(map(string))
   default     = []
 }
 
 variable "repo_team_collaborators" {
-  description = "value"
+  description = "The GitHub team id(s) or the GitHub team slug to add to the repository as a collaborator(s)."
   type        = list(map(string))
   default     = []
 }
